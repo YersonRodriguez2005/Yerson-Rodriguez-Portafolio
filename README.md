@@ -12,9 +12,6 @@
 > **Portafolio web personal** desarrollado con React + Vite + TailwindCSS.  
 > Diseño oscuro, animaciones CSS personalizadas y partículas flotantes.
 
-<br/>
-
-![Preview del portafolio](https://via.placeholder.com/900x450/121212/ffffff?text=Mi+Portafolio+%E2%80%94+Yerson+Rodriguez)
 
 </div>
 
