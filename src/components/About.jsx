@@ -106,7 +106,7 @@ const About = () => (
         <motion.a
           whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-          href="/src/PDF/CV.pdf" download
+          href="/PDF/CV.pdf" download
           className="animate-button pulse-animation inline-flex items-center space-x-3 px-8 py-4 bg-linear-to-r from-white to-gray-300 text-[#121212] font-medium rounded-xl shadow-lg relative z-10"
         >
           <motion.div animate={{ rotate: [0,10,-10,10,0], transition: { repeat: Infinity, repeatDelay: 5, duration: 1 } }}>
