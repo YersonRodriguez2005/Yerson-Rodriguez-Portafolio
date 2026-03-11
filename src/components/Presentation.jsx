@@ -5,6 +5,8 @@ const ROLES = [
   ' de Software Web',
   ' Frontend',
   ' React',
+  ' Backend',
+  ' Node.js',
   ' Full Stack',
 ];
 
