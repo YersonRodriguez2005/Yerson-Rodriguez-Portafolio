@@ -62,6 +62,14 @@ const projects = [
     downloadApk: '/FitnessAhora.apk',
     featured: true,
     year: '2026',
+  },
+  {
+    id: 7,
+    title: 'Lunaro',
+    description: 'Lunaro es una plataforma de e-commerce de moda con catálogo de productos, carrito de compras, sistema de reseñas y panel de administración',
+    tags: ['React', 'Tailwind CSS', 'Lucide-React', 'Node.js', 'Express.js', 'PostgreSQL'],
+    github: 'https://github.com/YersonRodriguez2005/Lunaro',
+    year: '2026',
   }
 ];
 
