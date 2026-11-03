@@ -1,262 +1,388 @@
-import React, { useState } from 'react';
-import { Github, ExternalLink, Download, FileText, X } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import {
+  Github,
+  ExternalLink,
+  Download,
+  Sparkles,
+  X,
+  GraduationCap,
+  ShoppingBag,
+  Layout,
+  Compass,
+  Smartphone,
+  Layers
+} from 'lucide-react';
 
 const projects = [
   {
     id: 1,
-    title: 'FieldOps Admin',
-    description: 'Panel administrativo para gestión de operaciones de campo, con autenticación, CRUD de usuarios, CRUD de recursos, CRUD de ordenes de trabajo y visualización de datos.',
-    tags: ['React', 'Vite', 'TailwindCSS', 'Framer Motion', 'Node.js', 'MySQL'],
-    github: 'https://github.com/YersonRodriguez2005/FieldOps-Admin',
-    live: 'https://field-ops-admin-three.vercel.app/',
-    featured: true,
-    year: '2026',
-  },
-  {
-    id: 2,
-    title: 'StudyTrack',
-    description: 'Prototipo de plataforma visual de gestión de estudio con diseño moderno, para estudiantes universitarios. Su principal objetivo es dar seguimiento a los estudios de los estudiantes.',
-    tags: ['React', 'TailwindCSS', 'Framer Motion', 'CSS Animations'],
+    title: 'StudyTrack LMS',
+    category: 'lms',
+    description: 'Plataforma LMS y seguimiento académico para estudiantes universitarios con panel de control interactivo, entrega de módulos y consultas relacionales optimizadas en MySQL.',
+    tags: ['React', 'Tailwind CSS', 'Node.js', 'MySQL', 'REST API'],
     github: 'https://github.com/YersonRodriguez2005/StudyTrack',
     live: 'https://studytrack-iota.vercel.app/',
     featured: true,
     year: '2025',
   },
   {
+    id: 2,
+    title: 'AcademicSync LMS',
+    category: 'lms',
+    description: 'Sistema de gestión de aprendizaje (LMS) integral con control de cursos, aulas virtuales, gestión de tareas y reportes de rendimiento académico con PostgreSQL.',
+    tags: ['React', 'Tailwind CSS', 'Node.js', 'Express', 'PostgreSQL'],
+    github: 'https://github.com/YersonRodriguez2005/CampusSync',
+    live: 'https://campus-sync-uni.vercel.app/',
+    featured: true,
+    year: '2026',
+  },
+  {
     id: 3,
+    title: 'FieldOps Admin',
+    category: 'plataforma web',
+    description: 'Panel administrativo para gestión de operaciones de campo, con autenticación JWT, CRUD de usuarios, control de recursos y visualización analítica de órdenes.',
+    tags: ['React', 'Vite', 'Tailwind CSS', 'Node.js', 'MySQL'],
+    github: 'https://github.com/YersonRodriguez2005/FieldOps-Admin',
+    live: 'https://field-ops-admin-three.vercel.app/',
+    featured: true,
+    year: '2026',
+  },
+  {
+    id: 4,
     title: 'Sistema POS - Stop Food',
-    description: 'Sistema de punto de venta para restaurante con gestión de productos, ventas, usuarios. Experiencia de usuario fluida y diseño moderno, para optimizar las operaciones del restaurante.',
-    tags: ['React', 'Vite', 'TailwindCSS'],
+    category: 'plataforma web',
+    description: 'Sistema POS comercial para restaurantes con gestión rápida de productos en inventario, facturación fluida y operaciones ágiles de caja menor.',
+    tags: ['React', 'Vite', 'Tailwind CSS', 'State Management'],
     github: 'https://github.com/YersonRodriguez2005/System-POS-Stop-Food',
     live: 'https://pos-stop-food.vercel.app/',
     featured: false,
     year: '2026',
   },
   {
-    id: 4,
-    title: 'Via Segura',
-    description: 'Plataform informativa sobre seguridad vial, con recursos educativos, consejos de conducción segura, estadísticas de accidentes y noticias relacionadas con la seguridad en las carreteras.',
-    tags: ['Node.js', 'Express', 'PostgreSQL', 'JWT', 'Postman'],
+    id: 5,
+    title: 'Vía Segura',
+    category: 'landing',
+    description: 'Landing page institucional y plataforma educativa sobre seguridad vial con navegación fluida, estadísticas interactivas y diseño responsivo enfocado en UX.',
+    tags: ['React', 'Tailwind CSS', 'JavaScript', 'UI/UX', 'Responsive'],
     github: 'https://github.com/YersonRodriguez2005/ViaSegura',
     live: 'https://via-segura.vercel.app/',
     featured: false,
     year: '2024 - 2025',
   },
   {
-    id: 5,
-    title: 'CampusSync',
-    description: 'Aplicación móvil nativa y PWA para gestión académica. Incluye temporizador Pomodoro, notificaciones push (FCM y Web Push), gráficos de rendimiento y conexión a base de datos en la nube.',
-    tags: ['React', 'Ionic', 'Capacitor', 'Node.js', 'Express.js', 'PostgreSQL', 'Firebase'],
-    github: 'https://github.com/YersonRodriguez2005/CampusSync',
-    live: 'https://campus-sync-uni.vercel.app/',
-    downloadApk: '/CampusSync.apk',
-    featured: true,
-    year: '2026',
-  },
-  {
     id: 6,
-    title: 'FitnessAhora',
-    description: 'Aplicación movil de salud y entrenamiento. Genera rutinas dinámicas basadas en equipamiento, incluye dashboard interactivo de seguimiento biométrico y recomendaciones nutricionales con bases de datos relacionales en la nube.',
-    tags: ['React', 'Tailwind CSS', 'Ionic', 'Capacitor', 'Node.js', 'Express.js', 'PostgreSQL'],
-    github: 'https://github.com/YersonRodriguez2005/FitnessAhora',
-    downloadApk: '/FitnessAhora.apk',
-    featured: true,
-    year: '2026',
-  },
-  {
-    id: 7,
-    title: 'Lunaro',
-    description: 'Lunaro es una plataforma de e-commerce de moda con catálogo de productos, carrito de compras, sistema de reseñas y panel de administración',
-    tags: ['React', 'Tailwind CSS', 'Lucide-React', 'Node.js', 'Express.js', 'PostgreSQL'],
+    title: 'Lunaro E-Commerce',
+    category: 'ecommerce',
+    description: 'Plataforma de comercio electrónico de moda con catálogo dinámico categorizado, carrito de compras reactivo, panel de administración y base de datos relacional.',
+    tags: ['React', 'Tailwind CSS', 'Node.js', 'Express', 'PostgreSQL'],
     github: 'https://github.com/YersonRodriguez2005/Lunaro',
+    featured: false,
     year: '2026',
   }
 ];
 
-const ProjectCard = ({ project, index, onOpenModal }) => {
-  const [hovered, setHovered] = useState(false);
+const FILTER_TABS = [
+  { id: 'all', label: 'Todos' },
+  { id: 'plataforma web', label: 'Plataformas Web' },
+  { id: 'landing', label: 'Landing Pages' },
+  { id: 'ecommerce', label: 'E-Commerce' },
+  { id: 'lms', label: 'LMS / Educación' },
+];
 
-  return (
-    <div className="project-card" style={{ animationDelay: `${index * 0.1}s` }}
-      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-      <div className="relative h-full p-[1.5px] rounded-xl overflow-hidden group">
-        <div className="absolute inset-0 rounded-xl transition-all duration-500"
-          style={{
-            background: hovered
-              ? 'linear-gradient(135deg,#ffffff,#555,#ffffff)'
-              : 'linear-gradient(135deg,#2a2a2a,#1a1a1a,#2a2a2a)',
-            backgroundSize: '300% 300%',
-            animation: hovered ? 'borderSpin 3s ease infinite' : 'none',
-          }} />
-        <div className="relative h-full bg-[#161616] rounded-xl p-6 z-10 flex flex-col">
-          <div className="flex items-start justify-between mb-3">
-            <span className="text-xs text-white/25 tracking-widest font-mono">{project.year}</span>
-            <div className="flex items-center space-x-2.5">
-              {project.featured && (
-                <span className="text-[10px] text-white/35 tracking-widest uppercase">★ destacado</span>
-              )}
-              {project.github && (
-                <a href={project.github} target="_blank" rel="noopener noreferrer"
-                  className="text-white hover:text-white transition-colors">
-                  <Github className="w-3.5 h-3.5" />
-                </a>
-              )}
-              {project.live && (
-                <a href={project.live} target="_blank" rel="noopener noreferrer"
-                  className="text-white hover:text-white transition-colors">
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              )}
-            </div>
-          </div>
-          <h3 className="text-white font-bold text-lg mb-3 leading-snug">{project.title}</h3>
-          <p className="text-white/45 text-sm leading-relaxed grow mb-5">{project.description}</p>
-          
-          <div className={`flex flex-wrap gap-2 ${project.downloadApk ? 'mb-5' : 'mt-auto'}`}>
-            {project.tags.map((tag) => (
-              <span key={tag}
-                className="text-xs px-2.5 py-1 rounded-full bg-white/5 text-white/50 border border-white/8 group-hover:border-white/15 transition-colors">
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          {/* Botón de descarga exclusivo para apps móviles */}
-          {project.downloadApk && (
-            <button
-              onClick={() => onOpenModal(project)}
-              className="mt-auto inline-flex items-center justify-center space-x-2 text-white/60 hover:text-white text-xs transition-all duration-300 border border-white/10 hover:border-white/30 px-4 py-2.5 rounded-xl hover:bg-white/5 w-full"
-            >
-              <Download className="w-4 h-4" />
-              <span className="font-medium tracking-wide">Descargar APK</span>
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+// Helper para obtener el badge y el icono correspondiente a la categoría
+const getCategoryBadge = (category) => {
+  switch (category) {
+    case 'lms':
+      return {
+        label: 'LMS / EdTech',
+        icon: <GraduationCap className="size-3 text-purple-400" />,
+        className: 'text-purple-300 bg-purple-500/10 border-purple-500/20',
+      };
+    case 'ecommerce':
+      return {
+        label: 'E-Commerce',
+        icon: <ShoppingBag className="size-3 text-amber-400" />,
+        className: 'text-amber-300 bg-amber-500/10 border-amber-500/20',
+      };
+    case 'landing':
+      return {
+        label: 'Landing Page',
+        icon: <Compass className="size-3 text-emerald-400" />,
+        className: 'text-emerald-300 bg-emerald-500/10 border-emerald-500/20',
+      };
+    case 'plataforma web':
+    default:
+      return {
+        label: 'Plataforma Web',
+        icon: <Layout className="size-3 text-sky-400" />,
+        className: 'text-sky-300 bg-sky-500/10 border-sky-500/20',
+      };
+  }
 };
 
-const Projects = () => {
-  // Estado para controlar qué proyecto se está descargando (null = modal cerrado)
+/* Subcomponente para animar cada letra del título */
+const AnimatedTitle = ({ text, baseDelay = 0 }) => (
+  <>
+    {text.split('').map((char, i) => (
+      <span
+        key={i}
+        className="section-title-char"
+        style={{ animationDelay: `${baseDelay + i * 0.08}s` }}
+      >
+        {char === ' ' ? '\u00A0' : char}
+      </span>
+    ))}
+  </>
+);
+
+export const Projects = () => {
+  const [activeTab, setActiveTab] = useState('all');
   const [selectedApk, setSelectedApk] = useState(null);
 
-  const handleConfirmDownload = () => {
+  // Filtrado reactivo según la categoría seleccionada
+  const filteredProjects = useMemo(() => {
+    if (activeTab === 'all') return projects;
+    return projects.filter((p) => p.category === activeTab);
+  }, [activeTab]);
+
+  // Cierre de modal con Escape
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setSelectedApk(null);
+    };
     if (selectedApk) {
-      window.open(selectedApk.downloadApk, '_blank');
-      setSelectedApk(null); // Cierra el modal tras iniciar la descarga
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedApk]);
+
+  const handleDownload = () => {
+    if (selectedApk?.downloadApk) {
+      const link = document.createElement('a');
+      link.href = selectedApk.downloadApk;
+      link.download = selectedApk.downloadApk.replace('/', '');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setSelectedApk(null);
     }
   };
 
   return (
-    <>
-      <style>{`
-        @keyframes gradientMove {
-          0%,100% { background-position: 0% 50%; }
-          50%     { background-position: 100% 50%; }
-        }
-        .animate-gradient { background-size: 400% 100%; animation: gradientMove 8s cubic-bezier(0.45,0.05,0.55,0.95) infinite; }
-        @keyframes borderSpin {
-          0%,100% { background-position: 0% 50%; }
-          50%     { background-position: 100% 50%; }
-        }
-        @keyframes cardFade {
-          from { opacity: 0; transform: translateY(22px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes modalFadeIn {
-          from { opacity: 0; backdrop-filter: blur(0px); }
-          to   { opacity: 1; backdrop-filter: blur(4px); }
-        }
-        @keyframes modalSlideUp {
-          from { opacity: 0; transform: translateY(20px) scale(0.95); }
-          to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .project-card { animation: cardFade 0.6s cubic-bezier(0.16,1,0.3,1) both; height: 100%; }
-        .modal-overlay { animation: modalFadeIn 0.3s ease-out forwards; }
-        .modal-content { animation: modalSlideUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
-      `}</style>
+    <section
+      id="projects"
+      className="section-deferred relative py-24 px-4 bg-transparent text-zinc-100 overflow-hidden"
+    >
+      <div className="container mx-auto max-w-5xl relative z-10">
 
-      <section id="projects" className="py-24 bg-[#0f0f0f]/80 relative">
-        <div className="container mx-auto max-w-5xl px-6 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-              <span className="bg-clip-text text-transparent bg-linear-to-r from-white via-gray-500 to-white animate-gradient">
-                Proyectos
-              </span>
-            </h2>
-            <div className="w-24 h-1 bg-white mx-auto rounded-full" />
-            <p className="text-white/35 mt-6 text-sm max-w-md mx-auto leading-relaxed">
-              Proyectos que demuestran mis habilidades en desarrollo web full stack y móvil.
-            </p>
+        {/* Cabecera de la sección */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/80 border border-white/10 text-xs text-zinc-400 mb-3 backdrop-blur-md">
+            <Sparkles className="size-3 text-emerald-400" />
+            <span>Portafolio de Soluciones</span>
           </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4 select-none">
+            <AnimatedTitle text="Proyectos Destacados" baseDelay={0} />
+          </h2>
+          <div className="w-16 h-1 bg-white/20 mx-auto rounded-full mb-6" />
+          <p className="max-w-xl mx-auto text-sm text-zinc-400 leading-relaxed">
+            Plataformas administrativas, sistemas educativos (LMS), tiendas electrónicas y experiencias web orientadas a la conversión.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((p, i) => (
-              <div key={p.id} className="relative p-0.5 rounded-2xl overflow-hidden h-full">
-                <div className="absolute inset-0 bg-linear-to-r from-white via-gray-500 to-white animate-gradient bg-size-[200%_auto] z-0" />
-                <div className="relative z-10 h-full w-full bg-white dark:bg-gray-900 rounded-xl">
-                  {/* Pasamos el disparador del modal al componente hijo */}
-                  <ProjectCard project={p} index={i} onOpenModal={setSelectedApk} />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-10">
-            <a href="https://github.com/YersonRodriguez2005" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 text-white/35 hover:text-white text-sm transition-all duration-300 border border-white/8 hover:border-white/25 px-6 py-3 rounded-xl hover:bg-white/3">
-              <Github className="w-4 h-4" />
-              <span>Ver más en GitHub</span>
-            </a>
+        {/* Barra de Filtros por Tipo de Solución */}
+        <div className="flex justify-center mb-10 overflow-x-auto pb-2 scrollbar-none">
+          <div className="inline-flex items-center p-1 rounded-xl bg-zinc-900/80 border border-white/10 backdrop-blur-md gap-1">
+            {FILTER_TABS.map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all duration-200 ${isActive
+                      ? 'bg-white text-zinc-950 font-semibold shadow-sm'
+                      : 'text-zinc-400 hover:text-white hover:bg-white/5'
+                    }`}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
           </div>
         </div>
-        <div className="w-24 h-0.5 bg-white/20 mx-auto rounded-full mt-20" />
-      </section>
 
-      {/* --- MODAL DE TÉRMINOS Y DESCARGA --- */}
+        {/* Grilla de Proyectos Renderizada Correctamente */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-14">
+          {filteredProjects.map((project) => {
+            const badge = getCategoryBadge(project.category);
+            return (
+              <article
+                key={project.id}
+                className="group relative rounded-2xl bg-zinc-900/40 hover:bg-zinc-900/60 border border-white/10 hover:border-white/20 p-6 backdrop-blur-md transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
+              >
+                <div>
+                  {/* Metadatos superiores: Año, Destacado y Categoría */}
+                  <div className="flex items-center justify-between mb-3 text-xs">
+                    <span className="font-mono text-zinc-500 font-medium">
+                      {project.year}
+                    </span>
+                    <div className="flex items-center gap-2">
+                      {project.featured && (
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-medium text-emerald-400">
+                          Destacado
+                        </span>
+                      )}
+                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md border text-[11px] font-medium ${badge.className}`}>
+                        {badge.icon}
+                        <span>{badge.label}</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Título y Enlaces de Acceso */}
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <h3 className="text-lg font-bold text-white group-hover:text-zinc-100 transition-colors">
+                      {project.title}
+                    </h3>
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
+                          aria-label={`Código fuente en GitHub de ${project.title}`}
+                        >
+                          <Github className="size-4" />
+                        </a>
+                      )}
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
+                          aria-label={`Demo en vivo de ${project.title}`}
+                        >
+                          <ExternalLink className="size-4" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Descripción */}
+                  <p className="text-xs text-zinc-400 leading-relaxed mb-6">
+                    {project.description}
+                  </p>
+                </div>
+
+                <div>
+                  {/* Badges de Tecnologías */}
+                  <div className="flex flex-wrap gap-1.5 mb-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-0.5 rounded-md text-[11px] font-mono bg-white/4 text-zinc-400 border border-white/5"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Acción de descarga APK para proyectos móviles si existieran */}
+                  {project.downloadApk && (
+                    <button
+                      onClick={() => setSelectedApk(project)}
+                      className="mt-4 w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-zinc-800/80 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-white/10 hover:border-white/20 text-xs font-semibold transition-all duration-200"
+                    >
+                      <Download className="size-3.5 text-sky-400" />
+                      <span>Descargar APK (Android)</span>
+                    </button>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        {/* Enlace general a GitHub */}
+        <div className="flex justify-center">
+          <a
+            href="https://github.com/YersonRodriguez2005"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900/60 hover:bg-zinc-900 text-zinc-300 hover:text-white border border-white/10 hover:border-white/20 text-xs font-medium transition-all"
+          >
+            <Github className="size-4" />
+            <span>Explorar más repositorios en GitHub</span>
+          </a>
+        </div>
+
+      </div>
+
+      {/* Modal accesible de descarga (en caso de proyectos APK) */}
       {selectedApk && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay bg-black/60">
-          <div className="absolute inset-0" onClick={() => setSelectedApk(null)} />
-          
-          <div className="relative bg-[#161616] border border-white/10 rounded-2xl p-6 w-full max-w-md shadow-2xl modal-content flex flex-col">
-            <button 
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200"
+        >
+          <div
+            className="absolute inset-0"
+            onClick={() => setSelectedApk(null)}
+          />
+
+          <div className="relative w-full max-w-md rounded-2xl bg-zinc-950 border border-white/10 p-6 shadow-2xl z-10 animate-in zoom-in-95 duration-200">
+            <button
               onClick={() => setSelectedApk(null)}
-              className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors"
+              className="absolute top-4 right-4 p-1 rounded-lg text-zinc-400 hover:text-white hover:bg-white/5 transition-colors"
+              aria-label="Cerrar ventana modal"
             >
-              <X className="w-5 h-5" />
+              <X className="size-4" />
             </button>
 
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="p-2.5 bg-white/5 rounded-lg border border-white/10">
-                <FileText className="w-5 h-5 text-white/70" />
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400">
+                <Smartphone className="size-5" />
               </div>
-              <h3 className="text-xl font-bold text-white">Términos de Uso</h3>
+              <div>
+                <h3 id="modal-title" className="text-base font-bold text-white">
+                  Instalación de Aplicación
+                </h3>
+                <p className="text-xs text-zinc-400">{selectedApk.title}</p>
+              </div>
             </div>
 
-            <p className="text-white/50 text-sm leading-relaxed mb-6">
-              Al descargar la aplicación <span className="text-white font-medium">"{selectedApk.title}"</span>, confirmas que esta es una versión de demostración (MVP) construida para fines de portafolio y pruebas. Aceptas las políticas de privacidad y el uso de notificaciones push de prueba.
+            <p className="text-xs text-zinc-300 leading-relaxed mb-6">
+              Esta aplicación está empaquetada como versión de prueba directa. Al confirmar, se iniciará la descarga del instalador en tu dispositivo.
             </p>
 
-            <div className="flex space-x-3 mt-auto">
-              <button 
+            <div className="flex items-center gap-3">
+              <button
                 onClick={() => setSelectedApk(null)}
-                className="flex-1 py-2.5 rounded-xl border border-white/10 text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-medium"
+                className="w-1/2 py-2.5 rounded-xl border border-white/10 text-zinc-300 hover:text-white hover:bg-white/5 text-xs font-semibold transition-all"
               >
                 Cancelar
               </button>
-              <button 
-                onClick={handleConfirmDownload}
-                className="flex-1 py-2.5 rounded-xl bg-white text-black hover:bg-gray-200 transition-all text-sm font-bold flex items-center justify-center space-x-2"
+              <button
+                onClick={handleDownload}
+                className="w-1/2 py-2.5 rounded-xl bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm"
               >
-                <Download className="w-4 h-4" />
-                <span>Aceptar y Descargar</span>
+                <Download className="size-3.5" />
+                <span>Confirmar y Descargar</span>
               </button>
             </div>
           </div>
         </div>
       )}
-    </>
+    </section>
   );
 };
 

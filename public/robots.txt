@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yerson-rodriguez-portafolio-9nel.vercel.app/sitemap.xml

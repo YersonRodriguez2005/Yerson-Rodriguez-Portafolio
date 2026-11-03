@@ -1,275 +1,268 @@
-import React, { useEffect, useState } from 'react';
-import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Download,
+  ArrowRight,
+  Check,
+  MapPin,
+  Terminal,
+  Database,
+  Layers
+} from 'lucide-react';
 
 const ROLES = [
-  ' de Software Web',
-  ' Frontend',
-  ' React',
-  ' Backend',
-  ' Node.js',
-  ' Full Stack',
+  'Desarrollador Full-Stack',
+  'Especialista en React & Tailwind',
+  'Backend con Node.js & Express',
+  'Arquitectura PostgreSQL & MySQL',
 ];
 
-/* Anima cada letra del nombre entre blanco y gris (igual que el logo) */
-const AnimatedName = ({ text, baseDelay = 0, className = '' }) => (
-  <span className={className}>
+const TECH_PILLS = [
+  'React.js',
+  'Node.js',
+  'Express',
+  'PostgreSQL',
+  'Tailwind CSS',
+  'APIs REST',
+];
+
+/* Anima cada carácter con oscilación vertical y transición de luz */
+const AnimatedText = ({ text, baseDelay = 0 }) => (
+  <>
     {text.split('').map((char, i) => (
       <span
         key={i}
-        className="name-char"
+        className="hero-name-char"
         style={{ animationDelay: `${baseDelay + i * 0.08}s` }}
       >
         {char === ' ' ? '\u00A0' : char}
       </span>
     ))}
-  </span>
+  </>
 );
 
-/* Genera orbes aleatorios una sola vez */
-const generateOrbs = (count) =>
-  Array.from({ length: count }, (_, i) => ({
-    id: i,
-    left: `${5 + Math.random() * 90}%`,
-    size: 2 + Math.random() * 3,
-    duration: 7 + Math.random() * 14,
-    delay: Math.random() * 10,
-    opacity: 0.25 + Math.random() * 0.55,
-  }));
-
-const ORBS = generateOrbs(28);
-
-const Presentation = () => {
+export const Presentation = () => {
   const [displayText, setDisplayText] = useState('');
   const [roleIndex, setRoleIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
-  /* Typewriter */
   useEffect(() => {
     const current = ROLES[roleIndex];
     let timeout;
+
     if (!deleting && charIndex < current.length) {
       timeout = setTimeout(() => {
         setDisplayText(current.slice(0, charIndex + 1));
         setCharIndex((c) => c + 1);
-      }, 75);
+      }, 70);
     } else if (!deleting && charIndex === current.length) {
-      timeout = setTimeout(() => setDeleting(true), 2400);
+      timeout = setTimeout(() => setDeleting(true), 2200);
     } else if (deleting && charIndex > 0) {
       timeout = setTimeout(() => {
         setDisplayText(current.slice(0, charIndex - 1));
         setCharIndex((c) => c - 1);
-      }, 40);
+      }, 35);
     } else if (deleting && charIndex === 0) {
       timeout = setTimeout(() => {
         setDeleting(false);
         setRoleIndex((r) => (r + 1) % ROLES.length);
-      }, 0);
+      }, 100);
     }
+
     return () => clearTimeout(timeout);
   }, [charIndex, deleting, roleIndex]);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('rodriguezyerson2005@gmail.com');
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2400);
+  };
 
   return (
     <>
       <style>{`
-        /* ─── Name letter pulse (same as logo) ─── */
-        @keyframes namePulse {
-          0%,100% { color: #ffffff; }
-          50%      { color: #3d3d3d; }
+        /* Animación fluida de onda y contraste para títulos grandes */
+        @keyframes heroWave {
+          0%, 100% {
+            transform: translateY(0);
+            color: #ffffff;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+          }
+          50% {
+            transform: translateY(-4px);
+            color: #a1a1aa;
+            text-shadow: none;
+          }
         }
-        .name-char {
+        .hero-name-char {
           display: inline-block;
-          animation: namePulse 3.5s ease-in-out infinite;
-        }
-
-        /* ─── Section fade-in staggered ─── */
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(28px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .fade-up { animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) both; }
-
-        /* ─── Orb float upward ─── */
-        @keyframes orbRise {
-          0%   { transform: translateY(0) translateX(0);  opacity: 0; }
-          8%   { opacity: var(--orb-opacity); }
-          88%  { opacity: var(--orb-opacity); }
-          100% { transform: translateY(-105vh) translateX(18px); opacity: 0; }
-        }
-        .orb {
-          position: absolute;
-          border-radius: 50%;
-          background: white;
-          animation: orbRise linear infinite;
-          opacity: 0;
-          pointer-events: none;
-        }
-
-        /* ─── Cursor blink ─── */
-        @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
-        .cursor {
-          display: inline-block;
-          width: 2px; height: 1.1em;
-          background: white;
-          margin-left: 3px;
-          vertical-align: middle;
-          animation: blink 0.95s ease infinite;
-        }
-
-        /* ─── Social icon ─── */
-        .social-ico {
-          transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), color 0.3s;
-        }
-        .social-ico:hover { transform: translateY(-5px); color: white; }
-
-        /* ─── CTA primary ─── */
-        .btn-primary {
-          position: relative; overflow: hidden;
-          transition: transform 0.3s cubic-bezier(0.16,1,0.3,1),
-                      background 0.3s, box-shadow 0.3s;
-        }
-        .btn-primary::before {
-          content: '';
-          position: absolute; top: 0; left: -100%;
-          width: 100%; height: 100%;
-          background: linear-gradient(90deg,transparent,rgba(0,0,0,0.12),transparent);
-          transition: left 0.5s;
-        }
-        .btn-primary:hover::before { left: 100%; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,255,255,0.15); }
-
-        /* ─── CTA secondary ─── */
-        .btn-secondary {
-          transition: border-color 0.3s, background 0.3s, transform 0.3s;
-        }
-        .btn-secondary:hover {
-          border-color: rgba(255,255,255,0.55);
-          background: rgba(255,255,255,0.05);
-          transform: translateY(-2px);
-        }
-
-        /* ─── Scroll bounce ─── */
-        @keyframes bounce {
-          0%,100% { transform: translateY(0); }
-          50%      { transform: translateY(5px); }
-        }
-        .scroll-bounce { animation: bounce 2.2s ease-in-out infinite; }
-
-        /* ─── Radial glow ─── */
-        .hero-glow {
-          background: radial-gradient(ellipse 55% 45% at 50% 50%,
-            rgba(255,255,255,0.05) 0%, transparent 70%);
+          animation: heroWave 3.2s ease-in-out infinite;
+          will-change: transform, color;
         }
       `}</style>
 
       <section
         id="home"
-        className="relative min-h-screen flex flex-col items-center justify-center bg-[#121212] overflow-hidden"
+        className="relative min-h-[92vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 bg-transparent overflow-hidden"
       >
-        {/* ── Radial glow ── */}
-        <div className="hero-glow absolute inset-0 pointer-events-none" />
+        {/* Luz ambiental sutil difuminada en el centro superior */}
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-137.5 h-80 bg-linear-to-b from-zinc-700/15 via-zinc-800/5 to-transparent blur-[120px] pointer-events-none" />
 
-        {/* ── Rising orbs ── */}
-        {ORBS.map((orb) => (
-          <div
-            key={orb.id}
-            className="orb"
-            style={{
-              left: orb.left,
-              bottom: '-10px',
-              width: `${orb.size}px`,
-              height: `${orb.size}px`,
-              '--orb-opacity': orb.opacity,
-              animationDuration: `${orb.duration}s`,
-              animationDelay: `${orb.delay}s`,
-            }}
-          />
-        ))}
+        <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center">
 
-        {/* ── Content ── */}
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-
-          {/* Eyebrow */}
-          <p
-            className="fade-up text-white/40 text-s tracking-[0.35em] uppercase mt-10 mb-10"
-            style={{ animationDelay: '0.1s' }}
-          >
-            Bienvenido a mi portafolio
-          </p>
-
-          {/* Name — animated letter by letter */}
-          <h1 className="fade-up leading-none mb-3" style={{ animationDelay: '0.2s' }}>
-            <AnimatedName
-              text="¡Hola! Soy Yerson"
-              baseDelay={0.3}
-              className="block text-5xl md:text-7xl lg:text-5xl font-extrabold tracking-tight"
-            />
-            <AnimatedName
-              text="Rodriguez"
-              baseDelay={0.9}
-              className="block text-5xl md:text-7xl lg:text-5xl font-extrabold tracking-tight"
-            />
-          </h1>
-
-          {/* Typewriter role */}
-          <div
-            className="fade-up flex items-center justify-center mt-7 mb-10 h-9"
-            style={{ animationDelay: '0.45s' }}
-          >
-            <span className="text-white font-semibold text-lg md:text-xl tracking-wide">
-              Desarrollador {displayText}
+          {/* Badge de Disponibilidad y Ubicación */}
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-zinc-900/80 border border-white/10 text-xs text-zinc-300 mb-8 backdrop-blur-md shadow-inner">
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="cursor" />
+            <span className="font-medium">Disponible para trabajar</span>
+            <span className="text-zinc-600">•</span>
+            <span className="inline-flex items-center gap-1 text-zinc-400">
+              <MapPin className="size-3 text-zinc-400" />
+              Neiva, Colombia
+            </span>
           </div>
 
-          {/* Social icons */}
-          <div
-            className="fade-up flex items-center justify-center space-x-6 mb-12"
-            style={{ animationDelay: '0.6s' }}
-          >
-            {[
-              { href: 'https://github.com/YersonRodriguez05', icon: <Github className="w-5 h-5" /> },
-              { href: 'https://linkedin.com/in/YersonRodriguez', icon: <Linkedin className="w-5 h-5" /> },
-              { href: 'mailto:rodriguezyerson2005@gmail.com', icon: <Mail className="w-5 h-5" /> },
-            ].map(({ href, icon }) => (
-              <a
-                key={href}
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel="noopener noreferrer"
-                className="social-ico text-white/40"
+          {/* Título Principal con animación continua en toda la frase */}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-4 select-none flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4">
+            <span className="inline-block whitespace-nowrap">
+              <AnimatedText text="Hola, soy" baseDelay={0} />
+            </span>
+            <span className="inline-block whitespace-nowrap">
+              <AnimatedText text="Yerson Garzón" baseDelay={'Hola, soy '.length * 0.08} />
+            </span>
+          </h1>
+
+          {/* Rol dinámico */}
+          <div className="h-8 flex items-center justify-center mb-6">
+            <span className="text-lg sm:text-xl font-medium text-zinc-300">
+              {displayText}
+            </span>
+            <span className="inline-block w-0.5 h-5 ml-1 bg-emerald-400 animate-pulse" />
+          </div>
+
+          {/* Resumen extraído de la experiencia profesional */}
+          <p className="max-w-2xl text-sm sm:text-base text-zinc-400 leading-relaxed font-normal mb-8">
+            Desarrollador de software con más de un año de experiencia en producción creando
+            plataformas con <span className="text-zinc-200 font-medium">React</span>, arquitecturas backend en{' '}
+            <span className="text-zinc-200 font-medium">Node.js / Express</span> y bases de datos relacionales
+            optimizadas en <span className="text-zinc-200 font-medium">PostgreSQL</span>.
+          </p>
+
+          {/* Badges de Tecnologías principales */}
+          <div className="flex flex-wrap justify-center gap-2 mb-10 max-w-xl">
+            {TECH_PILLS.map((tech) => (
+              <span
+                key={tech}
+                className="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900/80 border border-white/5 text-zinc-400 hover:text-zinc-200 hover:border-white/20 transition-all duration-200"
               >
-                {icon}
-              </a>
+                {tech}
+              </span>
             ))}
           </div>
 
-          {/* CTA buttons */}
-          <div
-            className="fade-up flex flex-col sm:flex-row items-center justify-center gap-4"
-            style={{ animationDelay: '0.75s' }}
-          >
+          {/* Botones de Acción (CTAs) */}
+          <div className="flex flex-wrap items-center justify-center gap-3.5 mb-12 w-full sm:w-auto">
             <a
               href="#projects"
-              className="btn-primary inline-flex items-center px-8 py-3.5 bg-white text-[#121212] font-semibold rounded-xl text-sm tracking-wide"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-zinc-950 font-semibold rounded-xl text-sm hover:bg-zinc-200 transition-all shadow-lg shadow-white/5 hover:-translate-y-px"
             >
-              Ver Proyectos
+              Explorar Proyectos
+              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+
+            <a
+              href="/HV_Yerson_Garzon_Desarrollador_FullStack.pdf"
+              download
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-zinc-900/80 hover:bg-zinc-800 text-zinc-100 border border-white/10 hover:border-white/20 font-semibold rounded-xl text-sm transition-all hover:-translate-y-px"
+            >
+              <Download className="size-4 text-zinc-400" />
+              Descargar CV
+            </a>
+
+            <button
+              onClick={handleCopyEmail}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 bg-zinc-900/60 hover:bg-zinc-800/80 text-zinc-300 border border-white/10 rounded-xl text-sm transition-all"
+              title="Copiar correo al portapapeles"
+            >
+              {copiedEmail ? (
+                <>
+                  <Check className="size-4 text-emerald-400" />
+                  <span className="text-emerald-400 font-medium">¡Copiado!</span>
+                </>
+              ) : (
+                <>
+                  <Mail className="size-4 text-zinc-400" />
+                  <span>Copiar Correo</span>
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* Redes Sociales Rápidas */}
+          <div className="flex items-center gap-5 text-zinc-400 mb-14">
+            <a
+              href="https://github.com/YersonRodriguez2005"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors p-2 hover:bg-white/5 rounded-lg"
+              aria-label="GitHub"
+            >
+              <Github className="size-5" />
             </a>
             <a
-              href="#contact"
-              className="btn-secondary inline-flex items-center px-8 py-3.5 border border-white/18 text-white font-semibold rounded-xl text-sm tracking-wide"
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors p-2 hover:bg-white/5 rounded-lg"
+              aria-label="LinkedIn"
             >
-              Contactarme
+              <Linkedin className="size-5" />
+            </a>
+            <a
+              href="mailto:rodriguezyerson2005@gmail.com"
+              className="hover:text-white transition-colors p-2 hover:bg-white/5 rounded-lg"
+              aria-label="Email"
+            >
+              <Mail className="size-5" />
             </a>
           </div>
-        </div>
 
-        {/* ── Scroll indicator ── */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-bounce">
-          <a href="#about" className="flex flex-col items-center space-y-1.5 text-white/25 hover:text-white/55 transition-colors">
-            <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
-            <ArrowDown className="w-3.5 h-3.5" />
-          </a>
+          {/* Métricas Reales de Producción */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl text-left">
+            <div className="p-4 rounded-xl bg-zinc-900/50 border border-white/5 backdrop-blur-sm">
+              <div className="flex items-center gap-2 text-zinc-400 mb-1">
+                <Terminal className="size-4 text-emerald-400" />
+                <span className="text-xs uppercase tracking-wider font-mono">Experiencia</span>
+              </div>
+              <p className="text-lg font-bold text-white">+1 Año</p>
+              <p className="text-xs text-zinc-400">En aplicaciones web en producción</p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-zinc-900/50 border border-white/5 backdrop-blur-sm">
+              <div className="flex items-center gap-2 text-zinc-400 mb-1">
+                <Database className="size-4 text-sky-400" />
+                <span className="text-xs uppercase tracking-wider font-mono">Backend</span>
+              </div>
+              <p className="text-lg font-bold text-white">+10 Endpoints</p>
+              <p className="text-xs text-zinc-400">APIs REST con JWT y PostgreSQL</p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-zinc-900/50 border border-white/5 backdrop-blur-sm">
+              <div className="flex items-center gap-2 text-zinc-400 mb-1">
+                <Layers className="size-4 text-indigo-400" />
+                <span className="text-xs uppercase tracking-wider font-mono">Frontend</span>
+              </div>
+              <p className="text-lg font-bold text-white">Full Modular</p>
+              <p className="text-xs text-zinc-400">React, Tailwind y UI/UX limpia</p>
+            </div>
+          </div>
+
         </div>
       </section>
     </>
