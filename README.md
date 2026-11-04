@@ -1,242 +1,180 @@
 <div align="center">
+  <img src="public/Perfil.jpeg" alt="Yerson Garzón" width="100" style="border-radius: 50%;" />
+  <h1>Yerson Garzón — Portafolio Profesional</h1>
+  <p><strong>Desarrollador Full-Stack | React · Node.js · Express · PostgreSQL · MySQL</strong></p>
+  <p>Neiva, Huila, Colombia</p>
 
-# 🌐 Portafolio Personal — Yerson Fabian Garzon Rodriguez
+  <p>
+    <a href="https://yerson-rodriguez-portafolio-9nel.vercel.app/" target="_blank">
+      <img src="https://img.shields.io/badge/Demo%20en%20Vivo-Vercel-black?style=for-the-badge&logo=vercel" alt="Vercel Live" />
+    </a>
+    <a href="https://linkedin.com/in/YersonRodriguez" target="_blank">
+      <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+    </a>
+    <a href="https://github.com/YersonRodriguez2005" target="_blank">
+      <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+    </a>
+  </p>
 
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-
-<br/>
-
-> **Portafolio web personal** desarrollado con React + Vite + TailwindCSS.  
-> Diseño oscuro, animaciones CSS personalizadas y partículas flotantes.
-
-
+  <!-- Badges de Tecnologías y Lighthouse -->
+  <p>
+    <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS_v4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/Vite_v7-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite" />
+    <img src="https://img.shields.io/badge/Lighthouse_Performance-96%2B-brightgreen?style=flat-square" alt="Performance" />
+    <img src="https://img.shields.io/badge/Lighthouse_SEO-100-brightgreen?style=flat-square" alt="SEO" />
+    <img src="https://img.shields.io/badge/Lighthouse_Best_Practices-100-brightgreen?style=flat-square" alt="Best Practices" />
+    <img src="https://img.shields.io/badge/Licencia-MIT-blue?style=flat-square" alt="Licencia" />
+  </p>
 </div>
 
 ---
 
-## ✨ Características
+## 📌 Descripción del Proyecto
 
-- 🎨 **Diseño oscuro** — Paleta `#121212` con gradientes blanco/gris
-- 🔤 **Animación de letras** — Logo y nombre con pulso dinámico blanco ↔ gris letra por letra
-- 🫧 **Partículas globales** — 40 orbes flotando hacia arriba en toda la página con `position: fixed`
-- ⌨️ **Typewriter effect** — Roles rotativos con animación de escritura y borrado
-- 📱 **Totalmente responsive** — Mobile-first, menú hamburguesa con animación
-- 🧭 **Navbar inteligente** — Detecta sección activa al hacer scroll + glassmorphism
-- 🃏 **Cards animadas** — Bordes con gradiente animado al hacer hover
-- 📊 **Barras de habilidades** — Animadas al entrar en viewport con IntersectionObserver
-- 🏅 **Sección de certificados** — Dinámica con filtros por categoría y colapso
-- 📄 **Descarga de CV** — Botón con efecto shimmer y pulso
+Aplicación web interactiva de portafolio personal diseñada desde cero con una arquitectura modular orientada a la conversión y experiencia de usuario (UX). Implementa estándares modernos de interfaz en modo oscuro (*deep dark mode* en `#09090b`), aceleración gráfica por hardware (GPU) para microinteracciones fluidas, optimizaciones de accesibilidad WCAG AA y renderizado condicional diferido para mantener altos puntajes en Google Lighthouse.
 
 ---
 
-## 🗂️ Estructura del Proyecto
+## ✨ Características Principales
 
-```
-portafolio/
-├── public/
-│   └── PDF/
-│       └── CV.pdf                  # CV descargable
-├── src/
-│   ├── components/
-│   │   ├── Header.jsx              # Navbar fija con logo animado
-│   │   ├── Presentation.jsx        # Hero section con typewriter y orbes
-│   │   ├── About.jsx               # Sobre mí con cards de habilidades blandas
-│   │   ├── Projects.jsx            # Grid de proyectos con cards hover
-│   │   ├── Skills.jsx              # Barras de progreso + logos por tecnología
-│   │   ├── Certificates.jsx        # Certificados filtrados por categoría
-│   │   └── Footer.jsx              # Footer con contacto y navegación
-│   ├── App.jsx                     # Componente raíz + GlobalOrbs (partículas)
-│   └── main.jsx                    # Entry point
-├── index.html
-├── package.json
-├── tailwind.config.js
-└── vite.config.js
-```
+* **Ambiente Cósmico Inmersivo:** Motor procedural de partículas estelares (`GlobalOrbs`) que genera un efecto de deriva y elevación continua sin bloquear el hilo principal.
+* **Barra de Navegación Flotante (Glassmorphism):** Cabecera semitransparente con `backdrop-blur-md`, indicador de disponibilidad en tiempo real (*live pulse status*) y detección de scroll optimizada con `requestAnimationFrame`.
+* **Tipografía Cinética Acelerada por GPU:** Ondas fluidas en títulos y nombres mediante animaciones compuestas (`transform` y `opacity`), eliminando repintados en CPU.
+* **Bento Grid Informativo (Sobre Mí):** Tarjetas asimétricas que exponen la experiencia profesional real en producción (Petrol Services y CIA SAS), formación técnica y universitaria (SENA / Corporación Universitaria Iberoamericana) y nivel de inglés certificado por EF SET (B1).
+* **Catálogo de Proyectos con Filtros por Solución:** Filtrado en tiempo real sin recargas para:
+  * 🖥️ *Plataformas Web* (FieldOps Admin, Sistema POS Stop Food).
+  * 🎓 *LMS / EdTech* (StudyTrack LMS, AcademicSync LMS).
+  * 🛍️ *E-Commerce* (Lunaro E-Commerce).
+  * 🌐 *Landing Pages* (VíaSegura).
+  * 📱 *Móvil APK* (Modal de descarga directa de compilados Android).
+* **Radar de Habilidades por Dominio Técnico:** Desglose honesto y contextualizado por responsabilidades de software (Frontend, Backend & REST APIs, Bases de Datos Relacionales, Herramientas & DevOps).
+* **Gestor de Certificaciones con Filtros:** Listado de más de 14 certificaciones avaladas con métricas resumidas y control de paginación/expansión.
+* **Footer de Conversión Directa:** Microinteracción de un solo clic para copiar el correo electrónico al portapapeles, enlaces directos a redes y botón de retorno al inicio.
+* **Accesibilidad Integral:** Botón *Skip to main content* para navegación con teclado, soporte estricto de contrastes de color y compatibilidad con `prefers-reduced-motion`.
+
+---
+
+## 🚀 Métricas de Rendimiento (Google Lighthouse)
+
+Auditoría ejecutada en entorno móvil de producción:
+
+| Métrica | Puntuación | Estado |
+| :--- | :---: | :---: |
+| **Rendimiento (Performance)** | **96 / 100** | 🟢 Excelente |
+| **Accesibilidad (Accessibility)** | **95+ / 100** | 🟢 Excelente |
+| **Prácticas Recomendadas** | **100 / 100** | 🟢 Perfecto |
+| **SEO** | **100 / 100** | 🟢 Perfecto |
+
+* **First Contentful Paint (FCP):** 1.0 s
+* **Speed Index (SI):** 1.4 s
+* **Cumulative Layout Shift (CLS):** 0.00
+* **Tamaño del bundle principal:** ~68.5 kB (gzipped)
 
 ---
 
 ## 🛠️ Stack Tecnológico
 
-| Tecnología | Uso | Nivel |
-|---|---|---|
-| ![React](https://img.shields.io/badge/-React-20232A?logo=react&logoColor=61DAFB) | Framework UI principal | Avanzado |
-| ![Vite](https://img.shields.io/badge/-Vite-646CFF?logo=vite&logoColor=white) | Build tool y dev server | Intermedio Alto |
-| ![TailwindCSS](https://img.shields.io/badge/-TailwindCSS-38B2AC?logo=tailwind-css&logoColor=white) | Estilos utilitarios | Avanzado |
-| ![Framer Motion](https://img.shields.io/badge/-Framer_Motion-black?logo=framer&logoColor=white) | Animaciones en About.jsx | Intermedio |
-| ![CSS3](https://img.shields.io/badge/-CSS3_Animations-1572B6?logo=css3&logoColor=white) | Animaciones personalizadas | Avanzado |
-| ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black) | Lógica e interactividad | Avanzado |
+### Frontend & Core
+* **React 18 / 19:** Biblioteca principal para renderizado declarativo y gestión de estado.
+* **Tailwind CSS v4:** Motor de estilos utilitarios de última generación con importación nativa `@import "tailwindcss"`.
+* **Lucide React:** Iconografía vectorial estilizada y accesible.
+* **Vite v7:** Servidor de desarrollo ultrarrápido y empaquetador para producción.
+
+### Optimización & Herramientas
+* **Rollup Manual Chunks:** División de código (*code splitting*) separando `vendor-react` y `vendor-icons`.
+* **Vercel Web Analytics & Speed Insights:** Monitoreo de tráfico en tiempo real y métricas Core Web Vitals.
+* **SEO Técnico:** Integración de Open Graph, Twitter Cards, `sitemap.xml` dinámico y `robots.txt`.
 
 ---
 
-## 🚀 Instalación y uso local
+## 📂 Estructura del Proyecto
 
-### Prerrequisitos
-
-- Node.js `>= 18.x`
-- npm o yarn
-
-### Pasos
-
-```bash
-# 1. Clonar el repositorio
-git clone https://github.com/YersonRodriguez05/portafolio.git
-
-# 2. Entrar al directorio
-cd portafolio
-
-# 3. Instalar dependencias
-npm install
-
-# 4. Iniciar servidor de desarrollo
-npm run dev
-```
-
-Abre [http://localhost:5173](http://localhost:5173) en tu navegador.
-
-### Scripts disponibles
-
-```bash
-npm run dev       # Servidor de desarrollo con HMR
-npm run build     # Build de producción en /dist
-npm run preview   # Preview del build de producción
+```text
+├── public/
+│   ├── favicon.svg             # Favicon vectorial
+│   ├── logo.png                # Marca personal minimalista
+│   ├── Perfil.jpeg             # Fotografía de perfil / OG Image
+│   ├── robots.txt              # Directivas para crawlers
+│   ├── sitemap.xml             # Mapa del sitio para indexación
+│   ├── google*.html            # Archivo de verificación Google Search Console
+│   └── HV_Yerson_Garzon_...pdf # Currículum Vitae descargable
+├── src/
+│   ├── components/
+│   │   ├── Header.jsx          # Barra de navegación flotante y responsive
+│   │   ├── Presentation.jsx    # Hero section con typewriter y CTAs
+│   │   ├── About.jsx           # Bento Grid de trayectoria y formación
+│   │   ├── Projects.jsx        # Catálogo de proyectos con filtros y modal APK
+│   │   ├── Skills.jsx          # Competencias técnicas por dominio
+│   │   ├── Certificates.jsx    # Certificaciones con filtros y estadísticas
+│   │   └── Footer.jsx          # Contacto directo, redes y créditos
+│   ├── App.jsx                 # Ensamblador principal y motor de partículas
+│   ├── index.css               # Capa base de Tailwind v4 y keyframes GPU
+│   └── main.jsx                # Punto de entrada de React
+├── index.html                  # Metadatos SEO, Open Graph y viewport
+├── vite.config.js              # Configuración de Vite, alias y chunks
+└── package.json                # Dependencias y scripts
 ```
 
 ---
 
-## 📦 Dependencias principales
+## 💻 Instalación y Ejecución Local
 
-```json
-{
-  "dependencies": {
-    "react": "^18.x",
-    "react-dom": "^18.x",
-    "framer-motion": "^11.x",
-    "lucide-react": "^0.400.x"
-  },
-  "devDependencies": {
-    "vite": "^5.x",
-    "@vitejs/plugin-react": "^4.x",
-    "tailwindcss": "^3.x",
-    "postcss": "^8.x",
-    "autoprefixer": "^10.x"
-  }
-}
-```
+Sigue estos pasos para clonar y ejecutar el portafolio en tu entorno de desarrollo:
 
----
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/YersonRodriguez2005/Mi-Portafolio.git
+   cd Mi-Portafolio
+   ```
 
-## 📐 Secciones del Portafolio
+2. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
 
-### 🏠 Inicio (Presentation)
-Hero section con el nombre animado letra por letra, efecto typewriter con 4 roles rotativos, íconos sociales y botones CTA. Fondo con 40 orbes flotantes generados dinámicamente.
+3. **Iniciar el servidor de desarrollo:**
+   ```bash
+   npm run dev
+   ```
+   Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación.
 
-### 👤 Sobre Mí (About)
-Cuatro cards con borde gradiente animado describiendo: Desarrollo Web, Formación Académica, Trabajo en Equipo y Enfoque & Objetivos. Incluye botón de descarga del CV.
+4. **Compilar para producción:**
+   ```bash
+   npm run build
+   ```
+   Los archivos optimizados se generarán en la carpeta `dist/`.
 
-### 🧩 Proyectos (Projects)
-Grid de proyectos en cards con:
-- Borde que se ilumina al hover
-- Tags de tecnologías usadas
-- Links a GitHub y demo en vivo
-- Indicador de proyectos destacados
-
-### 💡 Habilidades (Skills)
-Barras de progreso animadas al entrar en viewport con:
-- Logo SVG de cada tecnología inline
-- Filtros por categoría (Frontend / Backend / Herramientas)
-- Nivel textual (Avanzado / Intermedio Alto / Intermedio)
-- Badges del stack tecnológico
-
-### 🏅 Certificados (Certificates)
-14 certificaciones organizadas con:
-- Filtros por categoría
-- Stats (total, categorías, años activo)
-- Botón "Ver todos / Ver menos"
-- Indicador de certificados destacados
-
-### 📬 Contacto (Footer)
-Footer con datos de contacto completos, navegación rápida, redes sociales y botón scroll-to-top.
+5. **Previsualizar la compilación localmente:**
+   ```bash
+   npm run preview
+   ```
 
 ---
 
-## 🎨 Sistema de Diseño
+## 🌐 Despliegue en Producción
 
-```
-Colores principales:
-  Fondo base:        #121212
-  Fondo alternativo: #0e0e0e
-  Fondo footer:      #0a0a0a
-  Texto principal:   #ffffff
-  Texto secundario:  rgba(255,255,255,0.4–0.7)
-  Acentos:           Gradiente linear white → #555555
+El proyecto está configurado para despliegue continuo (CI/CD) a través de **Vercel**:
 
-Tipografía:
-  Sistema: font-sans (Inter / system-ui)
-  Pesos: 400 (normal), 500 (medium), 600 (semibold), 800 (extrabold)
-
-Animaciones:
-  charPulse    — Pulso blanco↔gris letra por letra (logo + nombre)
-  orbRise      — Partículas flotando hacia arriba (fixed, z-index:0)
-  gradientMove — Gradiente de fondo en motion (títulos de sección)
-  letterBounce — Bounce escalonado en links del nav al hover
-  skillFade    — Fade-in lateral en las barras de habilidades
-```
+* **Rama de producción:** `main`
+* **Comando de compilación:** `vite build`
+* **Directorio de salida:** `dist`
+* **Ruta de verificación de Google:** Verificada vía Search Console con archivo HTML estático en `/public`.
 
 ---
 
-## 📱 Diseño Responsive
+## 👤 Autor
 
-| Breakpoint | Layout |
-|---|---|
-| `< 768px` (mobile) | 1 columna, nav hamburguesa |
-| `≥ 768px` (tablet) | 2 columnas en grids |
-| `≥ 1024px` (desktop) | Layout completo, 3 columnas en certificados |
-
----
-
-## 🌐 Deploy
-
-El portafolio está optimizado para deploy en **Vercel**:
-
-```bash
-# Build de producción
-npm run build
-
-# El directorio /dist está listo para deploy
-```
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
-
----
-
-## 📬 Contacto
-
-<div align="center">
-
-[![Email](https://img.shields.io/badge/Email-rodriguezyerson2005@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:rodriguezyerson2005@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-YersonRodriguez-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/YersonRodriguez)
-[![GitHub](https://img.shields.io/badge/GitHub-YersonRodriguez05-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/YersonRodriguez05)
-[![Phone](https://img.shields.io/badge/WhatsApp-3216393715-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/573216393715)
-
-📍 Neiva, Huila — Colombia
-
-</div>
+**Yerson Fabián Garzón Rodríguez**
+* **Rol:** Desarrollador Full-Stack Junior
+* **Ubicación:** Neiva, Huila, Colombia
+* **Correo:** [rodriguezyerson2005@gmail.com](mailto:rodriguezyerson2005@gmail.com)
+* **Teléfono:** +57 321 639 3715
+* **LinkedIn:** [linkedin.com/in/YersonRodriguez](https://linkedin.com/in/YersonRodriguez)
+* **GitHub:** [github.com/YersonRodriguez2005](https://github.com/YersonRodriguez2005)
 
 ---
 
 ## 📄 Licencia
 
-Este proyecto es de uso personal. Si deseas usar parte del código como inspiración, por favor da crédito al autor.
-
----
-
-<div align="center">
-
-Hecho con ❤️ por **Yerson Fabian Garzon Rodriguez**
-
-⭐ Si te gustó el proyecto de mi portafolio, considera darle una estrella al repositorio
-
-</div>
+Este proyecto está bajo la Licencia **MIT**. Consulta el archivo `LICENSE` para más información.
