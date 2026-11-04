@@ -16,7 +16,7 @@ import {
 const projects = [
   {
     id: 1,
-    title: 'StudyTrack LMS',
+    title: 'StudyTrack',
     category: 'lms',
     description: 'Plataforma LMS y seguimiento académico para estudiantes universitarios con panel de control interactivo, entrega de módulos y consultas relacionales optimizadas en MySQL.',
     tags: ['React', 'Tailwind CSS', 'Node.js', 'MySQL', 'REST API'],
@@ -24,28 +24,6 @@ const projects = [
     live: 'https://studytrack-iota.vercel.app/',
     featured: true,
     year: '2025',
-  },
-  {
-    id: 2,
-    title: 'AcademicSync LMS',
-    category: 'lms',
-    description: 'Sistema de gestión de aprendizaje (LMS) integral con control de cursos, aulas virtuales, gestión de tareas y reportes de rendimiento académico con PostgreSQL.',
-    tags: ['React', 'Tailwind CSS', 'Node.js', 'Express', 'PostgreSQL'],
-    github: 'https://github.com/YersonRodriguez2005/CampusSync',
-    live: 'https://campus-sync-uni.vercel.app/',
-    featured: true,
-    year: '2026',
-  },
-  {
-    id: 3,
-    title: 'FieldOps Admin',
-    category: 'plataforma web',
-    description: 'Panel administrativo para gestión de operaciones de campo, con autenticación JWT, CRUD de usuarios, control de recursos y visualización analítica de órdenes.',
-    tags: ['React', 'Vite', 'Tailwind CSS', 'Node.js', 'MySQL'],
-    github: 'https://github.com/YersonRodriguez2005/FieldOps-Admin',
-    live: 'https://field-ops-admin-three.vercel.app/',
-    featured: true,
-    year: '2026',
   },
   {
     id: 4,
@@ -71,7 +49,7 @@ const projects = [
   },
   {
     id: 6,
-    title: 'Lunaro E-Commerce',
+    title: 'Lunaro - E-Commerce',
     category: 'ecommerce',
     description: 'Plataforma de comercio electrónico de moda con catálogo dinámico categorizado, carrito de compras reactivo, panel de administración y base de datos relacional.',
     tags: ['React', 'Tailwind CSS', 'Node.js', 'Express', 'PostgreSQL'],
