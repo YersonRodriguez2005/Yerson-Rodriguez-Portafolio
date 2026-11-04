@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/Perfil.jpeg" alt="Yerson Garzón" width="100" style="border-radius: 50%;" />
+  <img src="public/favicon.jpg" alt="Yerson Garzón" width="100" style="border-radius: 50%;" />
   <h1>Yerson Garzón — Portafolio Profesional</h1>
   <p><strong>Desarrollador Full-Stack | React · Node.js · Express · PostgreSQL · MySQL</strong></p>
   <p>Neiva, Huila, Colombia</p>
