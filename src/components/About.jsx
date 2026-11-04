@@ -1,13 +1,13 @@
 import React from 'react';
-import { 
-  Briefcase, 
-  GraduationCap, 
-  Code2, 
-  Languages, 
-  Download, 
-  CheckCircle2, 
+import {
+  Briefcase,
+  GraduationCap,
+  Code2,
+  Languages,
+  Download,
+  CheckCircle2,
   Calendar,
-  Sparkles 
+  Sparkles
 } from 'lucide-react';
 
 /* Subcomponente para animar cada letra del título */
@@ -28,50 +28,29 @@ const AnimatedTitle = ({ text, baseDelay = 0 }) => (
 export const About = () => {
   return (
     <>
-      <style>{`
-        /* Animación de oscilación vertical y resplandor para títulos */
-        @keyframes sectionTitleWave {
-          0%, 100% {
-            transform: translateY(0);
-            color: #ffffff;
-            text-shadow: 0 0 14px rgba(255, 255, 255, 0.25);
-          }
-          50% {
-            transform: translateY(-4px);
-            color: #a1a1aa;
-            text-shadow: none;
-          }
-        }
-        .section-title-char {
-          display: inline-block;
-          animation: sectionTitleWave 3.2s ease-in-out infinite;
-          will-change: transform, color;
-        }
-      `}</style>
-
       <section
         id="about"
         className="section-deferred relative py-24 px-4 bg-transparent text-zinc-100 overflow-hidden"
       >
         <div className="container mx-auto max-w-5xl relative z-10">
-          
+
           {/* Encabezado de Sección con Título Animado */}
           <div className="text-center mb-16 select-none">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/80 border border-white/10 text-xs text-zinc-400 mb-3 backdrop-blur-md">
               <Sparkles className="size-3 text-emerald-400" />
               <span>Trayectoria & Enfoque</span>
             </div>
-            
+
             <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
               <AnimatedTitle text="Sobre Mí" baseDelay={0} />
             </h2>
-            
+
             <div className="w-16 h-1 bg-white/20 mx-auto rounded-full" />
           </div>
 
           {/* Bento Grid Principal */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-            
+
             {/* Experiencia Profesional */}
             <div className="md:col-span-2 group relative rounded-2xl bg-zinc-900/50 hover:bg-zinc-900/70 border border-white/10 hover:border-white/20 p-6 md:p-8 backdrop-blur-md transition-all duration-300">
               <div className="flex items-center justify-between mb-5">

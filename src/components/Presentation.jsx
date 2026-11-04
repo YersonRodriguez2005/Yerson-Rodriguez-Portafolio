@@ -84,27 +84,6 @@ export const Presentation = () => {
 
   return (
     <>
-      <style>{`
-        /* Animación fluida de onda y contraste para títulos grandes */
-        @keyframes heroWave {
-          0%, 100% {
-            transform: translateY(0);
-            color: #ffffff;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
-          }
-          50% {
-            transform: translateY(-4px);
-            color: #a1a1aa;
-            text-shadow: none;
-          }
-        }
-        .hero-name-char {
-          display: inline-block;
-          animation: heroWave 3.2s ease-in-out infinite;
-          will-change: transform, color;
-        }
-      `}</style>
-
       <section
         id="home"
         className="relative min-h-[92vh] flex flex-col items-center justify-center pt-28 pb-16 px-4 bg-transparent overflow-hidden"

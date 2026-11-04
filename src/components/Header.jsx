@@ -31,64 +31,69 @@ export const Header = () => {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
-      const ids = navLinks.map((l) => l.href.replace('#', ''));
-      for (let i = ids.length - 1; i >= 0; i--) {
-        const el = document.getElementById(ids[i]);
-        if (el && window.scrollY >= el.offsetTop - 150) {
-          setActiveSection(ids[i]);
-          break;
-        }
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 30);
+          const ids = navLinks.map((l) => l.href.replace('#', ''));
+          for (let i = ids.length - 1; i >= 0; i--) {
+            const el = document.getElementById(ids[i]);
+            if (el && window.scrollY >= el.offsetTop - 150) {
+              setActiveSection(ids[i]);
+              break;
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <>
-      <style>{`
-        /* Movimiento de onda y cambio de tonalidad manteniendo contraste */
-        @keyframes nameWave {
-          0%, 100% {
-            transform: translateY(0);
-            color: #ffffff;
-          }
-          50% {
-            transform: translateY(-2px);
-            color: #a1a1aa;
-          }
-        }
-        .name-char-anim {
-          display: inline-block;
-          animation: nameWave 3.2s ease-in-out infinite;
-          will-change: transform, color;
-        }
-      `}</style>
-
       <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 transition-all duration-300">
         <div
-          className={`w-full max-w-5xl transition-all duration-300 rounded-2xl border ${
-            scrolled
-              ? 'bg-zinc-950/90 backdrop-blur-md border-white/10 shadow-2xl shadow-black/80 py-2.5 px-5'
-              : 'bg-zinc-950/75 backdrop-blur-md border-white/10 py-3 px-6'
-          }`}
+          className={`w-full max-w-5xl transition-all duration-300 rounded-2xl border ${scrolled
+            ? 'bg-zinc-950/90 backdrop-blur-md border-white/10 shadow-2xl shadow-black/80 py-2.5 px-5'
+            : 'bg-zinc-950/75 backdrop-blur-md border-white/10 py-3 px-6'
+            }`}
         >
           <div className="flex items-center justify-between">
-            
+
             {/* Logo / Nombre con animación de caracteres */}
             <a
               href="#home"
               className="group flex items-center gap-2.5 text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 rounded-lg p-1"
             >
-              <div className="relative flex items-center justify-center size-8 rounded-lg bg-zinc-900 border border-white/10 group-hover:border-white/30 transition-colors">
-                <span className="font-bold text-sm tracking-tight text-white">YG</span>
-                <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+              <div className="relative flex items-center justify-center size-9 rounded-xl bg-zinc-900 border border-white/10 group-hover:border-white/30 transition-all duration-300">
+
+                {/* 1. Opción Imagen: Carga el logo desde /public/logo.png */}
+                <img
+                  src="/favicon.jpg"
+                  alt="YG Logo"
+                  className="size-8 object-contain group-hover:scale-105 transition-transform duration-300"
+                  onError={(e) => {
+                    // Si no se encuentra /logo.png, oculta esta etiqueta y muestra el SVG fallback
+                    e.target.style.display = 'none';
+                    const svgElement = e.target.nextSibling;
+                    if (svgElement) svgElement.classList.remove('hidden');
+                  }}
+                />
+
+                {/* Punto de Disponibilidad (Badge) */}
+                <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
                 </span>
               </div>
+
+              {/* Identidad / Nombre de la marca */}
               <div className="flex flex-col text-left">
                 <span className="font-bold text-sm tracking-tight select-none">
                   <AnimatedText text="Yerson Garzón" baseDelay={0} />
@@ -108,11 +113,10 @@ export const Header = () => {
                   <a
                     key={link.href}
                     href={link.href}
-                    className={`relative px-3.5 py-1.5 text-xs font-medium tracking-wide rounded-lg transition-all duration-200 ${
-                      isActive
-                        ? 'text-white bg-white/15 shadow-sm'
-                        : 'text-zinc-300 hover:text-white hover:bg-white/5'
-                    }`}
+                    className={`relative px-3.5 py-1.5 text-xs font-medium tracking-wide rounded-lg transition-all duration-200 ${isActive
+                      ? 'text-white bg-white/15 shadow-sm'
+                      : 'text-zinc-300 hover:text-white hover:bg-white/5'
+                      }`}
                   >
                     {link.label}
                     {isActive && (
@@ -155,11 +159,10 @@ export const Header = () => {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMenuOpen(false)}
-                    className={`px-3 py-2 text-sm rounded-lg font-medium transition-colors ${
-                      isActive
-                        ? 'bg-white/10 text-white font-semibold'
-                        : 'text-zinc-300 hover:text-white hover:bg-white/5'
-                    }`}
+                    className={`px-3 py-2 text-sm rounded-lg font-medium transition-colors ${isActive
+                      ? 'bg-white/10 text-white font-semibold'
+                      : 'text-zinc-300 hover:text-white hover:bg-white/5'
+                      }`}
                   >
                     {link.label}
                   </a>

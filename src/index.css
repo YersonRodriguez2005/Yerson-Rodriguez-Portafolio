@@ -2,13 +2,13 @@
 
 @layer base {
   html, body {
-  background-color: #09090b;
-  color: #f4f4f5;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-}
+    background-color: #09090b;
+    color: #f4f4f5;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
 
   ::selection {
     background-color: rgba(255, 255, 255, 0.2);
@@ -27,4 +27,27 @@
 .section-deferred {
   content-visibility: auto;
   contain-intrinsic-size: 1px 700px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Animación compuesta para títulos y nombres (GPU Pura)
+   Elimina el repintado continuo de CPU detectado en Lighthouse
+───────────────────────────────────────────────────────────── */
+@keyframes titleGpuWave {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-3px);
+    opacity: 0.72;
+  }
+}
+
+.hero-name-char,
+.section-title-char,
+.name-char-anim {
+  display: inline-block;
+  animation: titleGpuWave 3.2s ease-in-out infinite;
+  will-change: transform, opacity;
 }
